@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <h3>
+    Encuentra tu juego gratis ideal!
+  </h3>
+  <SearchBar />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import SearchBar from "./components/SearchBar.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    SearchBar
   },
 };
 </script>
