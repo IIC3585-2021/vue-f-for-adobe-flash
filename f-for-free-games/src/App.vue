@@ -1,7 +1,5 @@
 <template>
-  <h3>
-    Encuentra tu juego gratis ideal!
-  </h3>
+  <h1>Encuentra tu juego ideal!</h1>
   <SearchBar />
 </template>
 
