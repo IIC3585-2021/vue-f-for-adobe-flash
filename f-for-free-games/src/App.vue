@@ -1,6 +1,6 @@
 <template>
   <h1>Encuentra tu juego ideal!</h1>
-  <SearchBar />
+  <SearchBar :genres="genres" />
 </template>
 
 <script>
@@ -27,18 +27,23 @@ export default {
   data () {
     return {
       games: [],
-      platforms: new Set(),
-      genres: new Set(),
+      platforms: [],
+      genres: [],
     }
   },
   async created() {
     const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
       .then(aux => (aux.json()))
-      .then(res => this.games = res)
+      .then(res => this.games = res);
+    let genresAux = new Set();
+    let platformAux = new Set();
     this.games.map((game) => {
-      this.platforms.add(game.platform)
-      this.genres.add(game.genre)
-    })
+      platformAux.add(game.platform)
+      genresAux.add(game.genre)
+    });
+    this.platforms = [...platformAux]
+    this.genres = [...genresAux]
+    console.log(this.genres)
   }
 };
 </script>

@@ -3,16 +3,17 @@
         <h3>Directorio de juegos</h3>
         <select name="cars" id="cars" class="fixed-size">
             <option value="value" selected>Filtrar juegos por genero</option>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option :key="genre" v-for="genre in genres">{{genre}}</option>
         </select>
     </div>
 </template>
 
 <script>
 export default {
+    name: 'SearchBar',
+    props: {
+        genres: Array,
+    }
 }
 </script>
 
