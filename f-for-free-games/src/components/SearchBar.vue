@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <h3>Directorio de juegos</h3>
-        <div class="barWrapper">
+        <div class="bar-wrapper">
             <select @change="genreFilter()" class="fixed-size">
                 <option disabled selected>Filtra juegos por genero</option>
                 <option value="NotSelected">Mostrar todos</option>
@@ -42,11 +42,13 @@ export default {
 }
 
 .bar-wrapper {
-    
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: flex-start;
 }
 
 .fixed-size {
-    width: 25%;
+    width: 50%;
     height: 50%;
     display: block;
     margin-block-start: 1em;
