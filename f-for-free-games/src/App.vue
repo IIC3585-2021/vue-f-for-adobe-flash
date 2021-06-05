@@ -11,6 +11,30 @@ export default {
   components: {
     SearchBar
   },
+  props: {
+    options: {
+      type: Object,
+      default: {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-key": "95dc739c69msh4db9097e9b0b5d2p16c196jsn3dd78469f40c",
+          "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
+          "useQueryString": true
+        }
+      }
+    }
+  },
+  data () {
+    return {
+      games: []
+    }
+  },
+  async created() {
+    const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
+      .then(aux => (aux.json()))
+      .then(res => this.games = res)
+    console.log(this.games)
+  }
 };
 </script>
 
