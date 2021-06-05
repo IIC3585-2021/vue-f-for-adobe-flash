@@ -1,6 +1,6 @@
 <template>
   <h1>Encuentra tu juego ideal!</h1>
-  <SearchBar :genres="genres" />
+  <SearchBar @filter-games-genre="filterGamesGenre" :genres="genres" />
 </template>
 
 <script>
@@ -31,19 +31,37 @@ export default {
       genres: [],
     }
   },
+  methods: {
+    async fetchGames() {
+      const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
+        .then(aux => (aux.json()))
+        .then(res => this.games = res);
+
+      let genresAux = new Set();
+      let platformAux = new Set();
+      this.games.map((game) => {
+        platformAux.add(game.platform)
+        genresAux.add(game.genre)
+      });
+      this.platforms = [...platformAux]
+      this.genres = [...genresAux]
+    },
+    async filterGamesGenre(genre) {
+      if (genre=="NotSelected") {
+        await this.fetchGames();
+      } else {
+        await this.fetchGames();
+        this.games = this.games.filter((game) => (game.genre === genre))
+        let platformAux = new Set();
+        this.games.map((game) => {
+          platformAux.add(game.platform)
+        });
+        this.platforms = [...platformAux]
+      }
+    }
+  },
   async created() {
-    const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
-      .then(aux => (aux.json()))
-      .then(res => this.games = res);
-    let genresAux = new Set();
-    let platformAux = new Set();
-    this.games.map((game) => {
-      platformAux.add(game.platform)
-      genresAux.add(game.genre)
-    });
-    this.platforms = [...platformAux]
-    this.genres = [...genresAux]
-    console.log(this.genres)
+    await this.fetchGames();
   }
 };
 </script>

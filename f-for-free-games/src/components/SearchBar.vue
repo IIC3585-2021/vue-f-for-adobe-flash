@@ -1,9 +1,10 @@
 <template>
     <div class="wrapper">
         <h3>Directorio de juegos</h3>
-        <select name="cars" id="cars" class="fixed-size">
-            <option value="value" selected>Filtrar juegos por genero</option>
-            <option :key="genre" v-for="genre in genres">{{genre}}</option>
+        <select @change="onSelect()" name="cars" id="cars" class="fixed-size">
+            <option disabled selected>Filtra juegos por genero</option>
+            <option value="NotSelected">Mostrar todos</option>
+            <option :value="genre" :key="genre" v-for="genre in genres">{{genre}}</option>
         </select>
     </div>
 </template>
@@ -13,6 +14,11 @@ export default {
     name: 'SearchBar',
     props: {
         genres: Array,
+    },
+    methods: {
+        onSelect() {
+            this.$emit('filter-games-genre', event.target.value)
+        }
     }
 }
 </script>
