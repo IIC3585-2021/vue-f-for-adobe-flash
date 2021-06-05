@@ -26,14 +26,19 @@ export default {
   },
   data () {
     return {
-      games: []
+      games: [],
+      platforms: new Set(),
+      genres: new Set(),
     }
   },
   async created() {
     const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
       .then(aux => (aux.json()))
       .then(res => this.games = res)
-    console.log(this.games)
+    this.games.map((game) => {
+      this.platforms.add(game.platform)
+      this.genres.add(game.genre)
+    })
   }
 };
 </script>
