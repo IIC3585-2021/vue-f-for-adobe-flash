@@ -1,6 +1,7 @@
 <template>
   <h1>Encuentra tu juego ideal!</h1>
-  <SearchBar @filter-games-genre="filterGamesGenre" :genres="genres" />
+  <SearchBar @filter-games-genre="filterGamesGenre" @filter-games-platform="filterGamesPlatform"
+  :genres="genres" :platforms="platforms" />
 </template>
 
 <script>
@@ -29,6 +30,8 @@ export default {
       games: [],
       platforms: [],
       genres: [],
+      selectedGenre: '',
+      selectedPlatform: '',
     }
   },
   methods: {
@@ -47,17 +50,62 @@ export default {
       this.genres = [...genresAux]
     },
     async filterGamesGenre(genre) {
+      console.log(this.games)
       if (genre=="NotSelected") {
+        this.selectedGenre = ''
         await this.fetchGames();
+        if (this.selectedPlatform) {
+          this.games = this.games.filter((game) => (game.platform === this.selectedPlatform))
+          let genreAux = new Set();
+          this.games.map((game) => {
+            genreAux.add(game.genre)
+          });
+          this.genre = [...genreAux]
+        }
       } else {
+        this.selectedGenre = genre
         await this.fetchGames();
-        this.games = this.games.filter((game) => (game.genre === genre))
-        let platformAux = new Set();
-        this.games.map((game) => {
-          platformAux.add(game.platform)
-        });
-        this.platforms = [...platformAux]
+        if (this.selectedPlatform) {
+          this.games = this.games.filter((game) => (game.genre === genre && game.platform === this.selectedPlatform))
+        } else {
+          this.games = this.games.filter((game) => (game.genre === genre))
+          let platformAux = new Set();
+          this.games.map((game) => {
+            platformAux.add(game.platform)
+          });
+          this.platforms = [...platformAux]
+        }
       }
+      console.log(this.games)
+    },
+    async filterGamesPlatform(platform) {
+      console.log(this.games)
+      if (platform=="NotSelected") {
+        this.selectedPlatform = ''
+        await this.fetchGames();
+        if (this.selectedGenre) {
+          this.games = this.games.filter((game) => (game.genre === this.selectedGenre))
+          let platformAux = new Set();
+          this.games.map((game) => {
+            platformAux.add(game.platform)
+          });
+          this.platforms = [...platformAux]
+        }
+      } else {
+        this.selectedPlatform = platform
+        await this.fetchGames();
+        if (this.selectedGenre) {
+          this.games = this.games.filter((game) => (game.platform === platform && game.genre === this.selectedGenre))
+        } else {
+          this.games = this.games.filter((game) => (game.platform === platform))
+          let genreAux = new Set();
+          this.games.map((game) => {
+            genreAux.add(game.genre)
+          });
+          this.genre = [...genreAux]
+        }
+      }
+      console.log(this.games)
     }
   },
   async created() {

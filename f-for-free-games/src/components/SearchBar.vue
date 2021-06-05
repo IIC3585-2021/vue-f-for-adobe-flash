@@ -1,11 +1,18 @@
 <template>
     <div class="wrapper">
         <h3>Directorio de juegos</h3>
-        <select @change="onSelect()" name="cars" id="cars" class="fixed-size">
-            <option disabled selected>Filtra juegos por genero</option>
-            <option value="NotSelected">Mostrar todos</option>
-            <option :value="genre" :key="genre" v-for="genre in genres">{{genre}}</option>
-        </select>
+        <div class="barWrapper">
+            <select @change="genreFilter()" class="fixed-size">
+                <option disabled selected>Filtra juegos por genero</option>
+                <option value="NotSelected">Mostrar todos</option>
+                <option :value="genre" :key="genre" v-for="genre in genres">{{genre}}</option>
+            </select>
+            <select @change="platformFilter()" class="fixed-size">
+                <option disabled selected>Filtra juegos por plataforma</option>
+                <option value="NotSelected">Mostrar todos</option>
+                <option :value="platform" :key="platform" v-for="platform in platforms">{{platform}}</option>
+            </select>
+        </div>
     </div>
 </template>
 
@@ -14,10 +21,14 @@ export default {
     name: 'SearchBar',
     props: {
         genres: Array,
+        platforms: Array,
     },
     methods: {
-        onSelect() {
+        genreFilter() {
             this.$emit('filter-games-genre', event.target.value)
+        },
+        platformFilter() {
+            this.$emit('filter-games-platform', event.target.value)
         }
     }
 }
@@ -28,6 +39,10 @@ export default {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
+}
+
+.bar-wrapper {
+    
 }
 
 .fixed-size {
