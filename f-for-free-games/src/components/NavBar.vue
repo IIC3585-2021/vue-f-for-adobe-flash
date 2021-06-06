@@ -2,8 +2,8 @@
     <div class="ui" id="js-ui">
     <nav class="scene_nav">
         <ol class="scene_nav_list">
-        <li class="scene_nav_item" v-for="(params, index) in maxScene">
-            <button class="scene_nav_button" @click="scene = index" :class="{ 'o-active': scene === index }"></button>
+        <li class="scene_nav_item" v-for="(game_id, index) in favorite_games">
+            <button class="scene_nav_button" @click="click(game_id)" :class="{ 'o-active': current === game_id }"></button>
         </li>
         </ol>
     </nav>
@@ -13,11 +13,20 @@
 <script>
 export default {
     name: 'NavBar',
+    props: {
+        favorite_games: Array,
+    },
     data() {
         return {
-        scene: 0,
-        maxScene: 8 };
+            current: 0,
+        };
     },
+    methods: {
+        click(id){
+            this.scene = id,
+            this.$emit('toggle-reminder', id)
+        },
+    }
 }
 </script>
 

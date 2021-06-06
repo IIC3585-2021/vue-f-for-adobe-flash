@@ -1,12 +1,17 @@
 <template>
-  <NavBar />
+  <NavBar
+    @toggle-reminder="toggleReminder"
+    :favorite_games="favorite_games"
+  />
   <h1>Encuentra tu juego ideal!</h1>
   <SearchBar @filter-games-genre="filterGamesGenre" @filter-games-platform="filterGamesPlatform"
   :genres="genres" :platforms="platforms" />
   <BigDiv
     @toggle-reminder="toggleReminder"
+    @add-favorite="addFavorite"
     :games="games"
     :selected_game="selected_game"
+    :favorite_games="favorite_games"
   />
 </template>
 
@@ -44,9 +49,20 @@ export default {
       selectedGenre: '',
       selectedPlatform: '',
       selected_game: 0,
+      favorite_games: [2,1],
     }
   },
   methods: {
+    removeFavorite(value) {
+      var index = this.favorite_games.indexOf(value);
+      if (index > -1) {
+        this.favorite_games.splice(index, 1);
+      }
+    },
+    addFavorite(id) {
+      this.favorite_games.includes(id) ? this.removeFavorite(id) : this.favorite_games.push(id)
+      console.log(this.favorite_games)
+    },
     toggleReminder(id){
       this.selected_game === id ? this.selected_game = 0 : this.selected_game = id
     },

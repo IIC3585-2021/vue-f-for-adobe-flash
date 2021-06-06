@@ -6,7 +6,9 @@
         >
             <GameDiv
                 @toggle-reminder="$emit('toggle-reminder', game.id)"
+                @add-favorite="$emit('add-favorite', game.id)"
                 :game="game" :selected_game="selected_game"
+                :favorite_games="favorite_games"
             />
         </div>
     </div>
@@ -25,8 +27,12 @@ export default {
     props: {
         games: Array,
         selected_game: Number,
+        favorite_games: Array,
     },
-    emits: ['toggle-reminder'],
+    emits: [
+        'toggle-reminder',
+        'add-favorite'
+    ],
 }
 </script>
 
