@@ -1,6 +1,7 @@
 <template>
   <NavBar
     @toggle-reminder="toggleReminder"
+    :selected_game="selected_game"
     :favorite_games="favorite_games"
   />
   <h1>Encuentra tu juego ideal!</h1>
@@ -49,7 +50,7 @@ export default {
       selectedGenre: '',
       selectedPlatform: '',
       selected_game: 0,
-      favorite_games: [2,1],
+      favorite_games: [],
     }
   },
   methods: {
