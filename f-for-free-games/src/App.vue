@@ -3,17 +3,25 @@
   <h1>Encuentra tu juego ideal!</h1>
   <SearchBar @filter-games-genre="filterGamesGenre" @filter-games-platform="filterGamesPlatform"
   :genres="genres" :platforms="platforms" />
+  <BigDiv
+    @toggle-reminder="toggleReminder"
+    :games="games"
+    :selected_game="selected_game"
+  />
 </template>
 
 <script>
 import SearchBar from "./components/SearchBar.vue";
 import NavBar from "./components/NavBar.vue";
+import BigDiv from "./components/BigDiv.vue";
+
 
 export default {
   name: "App",
   components: {
     SearchBar,
-    NavBar
+    NavBar,
+    BigDiv,
   },
   props: {
     options: {
@@ -35,9 +43,13 @@ export default {
       genres: [],
       selectedGenre: '',
       selectedPlatform: '',
+      selected_game: 0,
     }
   },
   methods: {
+    toggleReminder(id){
+      this.selected_game === id ? this.selected_game = 0 : this.selected_game = id
+    },
     async fetchGames() {
       const req = await fetch("https://free-to-play-games-database.p.rapidapi.com/api/games", this.options)
         .then(aux => (aux.json()))
@@ -122,6 +134,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  align-items: center;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
