@@ -8,7 +8,9 @@
         <h3>
             {{ game.title}}
         </h3>
-        <button class="button" @click="$emit('add-favorite', game.id)">{{favorite_games.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}</button>
+        <button class="button" @click="$emit('add-favorite', game.id)">
+            {{favorite_games.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}  <i class="fas fa-star"></i>
+        </button>
         <p>Name: {{ game.title }}</p>
         <p>Description: {{ game.short_description }}</p>
 
@@ -55,6 +57,33 @@ export default {
 
 .link {
     color:slateblue;
+}
+
+.button {
+    color:#fff;
+    background-color:#212529;
+    border-color:#212529;
+    display:inline-block;
+    font-weight:400;
+    line-height:1.5;
+    text-align:center;
+    text-decoration:none;
+    vertical-align:middle;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    border:1px solid transparent;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    border-radius:.25rem;
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce){
+    .button{
+        transition:none
+    }
 }
 
 </style>
