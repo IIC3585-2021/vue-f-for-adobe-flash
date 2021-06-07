@@ -9,7 +9,7 @@
             {{ game.title}}
         </h3>
         <button class="button" @click="$emit('add-favorite', game.id)">
-            {{favorite_games.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}  <i class="fas fa-star"></i>
+            {{favorite_games.includes(game.id) ? "Remover de Favoritos" : "Agregar a Favoritos"}}  <i class="fas fa-star"></i>
         </button>
         <p>Nombre: {{ game.title }}</p>
         <p>Descripción: {{ game.short_description }}</p>
