@@ -1,6 +1,8 @@
 <template>
-  <NavBar/>
-  <h1>Encuentra tu juego ideal!</h1>
+  <div class="navbar">
+    <NavBar/>
+  </div>
+  <h1>Encuentra tu juego gratis ideal!</h1>
   <SearchBar/>
   <BigDiv/>
 </template>
@@ -36,6 +38,15 @@ export default {
   align-items: center;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0%;
+  background-color: rgb(202, 240, 255);
+}
+
+.navbar {
+  background-color: #1b2735;
+  height: 50px;
 }
 </style>

@@ -34,39 +34,48 @@ export default {
 <style>
 .bigdiv {
     position: absolute;
-    width: 60%;
-    height:60%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: flex-start;
+
+    width: 100%;
+    height: 70%;
+
     margin-top:1em;
     margin-bottom:1em;
-    margin-left:17%;
-    border-style: solid;
-    border-color: chocolate;
     box-sizing: border-box;
     overflow-y:scroll;
+    overflow-x: hidden;
+
 }
 
 .game {
-    position: relative;
-    display: inline-block;
-    width: 21%;
-    height:20%;
-    padding-left: 1%;
+    width: 360px;
+    height: 270px;
 
     margin-top: 5%;
     box-sizing: border-box;
     overflow-y:hidden;
+    overflow-x: hidden;
 }
 
 .gamebig {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height:100%;
-    padding-left: 1%;
+    grid-column-start: span 3;
 
-    margin-top: 5%;
-    box-sizing: border-box;
-    overflow-y:hidden;
+    width: 100%;
+    height: 100%;
+
+    padding-left: 1%;
+    margin-top: 1.25em;
+
+    overflow-y: hidden;
+    align-items: left;
+    text-align: left;
+
+    padding-top: 0;
+
+    display: grid;
+    grid-template-columns: 385px auto;
 }
 
 </style>

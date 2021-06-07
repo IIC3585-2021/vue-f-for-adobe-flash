@@ -4,15 +4,17 @@
         :class="[selectedGame == game.id ? 'big-img-game' : 'img-game']"
         v-bind:src="game.thumbnail"
     >
-    <span>{{ game.title}}</span>
-    <div>
-        <button @click="addFavorite(game.id)">{{favoritesArray.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}</button>
-        <h6>Name: {{ game.title }}</h6>
-        <h6>Description: {{ game.short_description }}</h6>
+    <div class="text">
+        <h3>{{ game.title}}</h3>
+        <button class="button" @click="addFavorite(game.id)">
+            {{favoritesArray.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}  <i class="fas fa-star"></i>
+        </button>
+        <p>Nombre: {{ game.title }}</p>
+        <p>Descripción: {{ game.short_description }}</p>
 
-        <h6>Genre: {{ game.genre }}</h6>
-        <h6>Platform: {{ game.platform }}</h6>
-        <a  v-bind:href="game.game_url">DOWNLOAD NOW!</a>
+        <p>Genero: {{ game.genre }}</p>
+        <p>Plataforma: {{ game.platform }}</p>
+        <a class="link" v-bind:href="game.game_url">Pruebalo aquí!</a>
     </div>
 </template>
 
@@ -36,22 +38,60 @@ export default {
 <style>
 
 .img-game{
-    width: 90%;
-    height: 70%;
-    position: relative;
-    display: inline-block;
+    width: 365px;
+    height: 206px;
+
     overflow: hidden;
     margin: 0;
 }
 
 .big-img-game{
-    width: 50%;
-    height: 50%;
-    position: flex;
-    display: block;
+    width: 365px;
+    height: 206px;
+
     overflow: hidden;
     margin: 0;
     float: left;
+}
+
+.link {
+    color:slateblue;
+}
+
+.button {
+    color:#fff;
+    background-color:#212529;
+    border-color:#212529;
+    display:inline-block;
+    font-weight:400;
+    line-height:1.5;
+    text-align:center;
+    text-decoration:none;
+    vertical-align:middle;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    border:1px solid transparent;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    border-radius:.25rem;
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce){
+    .button{
+        transition:none
+    }
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 </style>
