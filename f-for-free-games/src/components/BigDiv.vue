@@ -21,10 +21,6 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
     name: 'BigDiv',
     computed: mapGetters(["allGames", "selectedGame"]),
-    methods: {
-        ...mapMutations(["toggleReminder"]),
-
-    },
     components: {
         GameDiv
     },
