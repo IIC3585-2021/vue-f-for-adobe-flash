@@ -1,10 +1,12 @@
 <template>
-  <NavBar
-    @toggle-reminder="toggleReminder"
-    :selected_game="selected_game"
-    :favorite_games="favorite_games"
-  />
-  <h1>Encuentra tu juego ideal!</h1>
+  <div class="navbar">
+    <NavBar
+      @toggle-reminder="toggleReminder"
+      :selected_game="selected_game"
+      :favorite_games="favorite_games"
+    />
+  </div>
+  <h1>Encuentra tu juego gratis ideal!</h1>
   <SearchBar @filter-games-genre="filterGamesGenre" @filter-games-platform="filterGamesPlatform"
   :genres="genres" :platforms="platforms" />
   <BigDiv
@@ -154,6 +156,15 @@ export default {
   align-items: center;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0%;
+  background-color: rgb(202, 240, 255);
+}
+
+.navbar {
+  background-color: #1b2735;
+  height: 50px;
 }
 </style>
