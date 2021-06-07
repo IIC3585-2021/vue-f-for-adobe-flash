@@ -1,29 +1,30 @@
 <template>
   <!-- <NavBar/> -->
   <h1>Encuentra tu juego ideal!</h1>
-  <SearchBar/>
+  <!-- <SearchBar/> -->
   <!-- <BigDiv/> -->
 </template>
 
 <script>
-import SearchBar from "./components/SearchBar.vue";
-import NavBar from "./components/NavBar.vue";
-import BigDiv from "./components/BigDiv.vue";
-import { mapGetters, mapActions } from "vuex";
+// import SearchBar from "./components/SearchBar.vue";
+// import NavBar from "./components/NavBar.vue";
+// import BigDiv from "./components/BigDiv.vue";
+// import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
-  methods: {...mapActions(["fetchGames"])},
-  components: {
-    SearchBar,
-    NavBar,
-    BigDiv,
-  },
-  computed: mapGetters(["allGames"]),
+  // methods: {
+    // ...mapActions(["fetchGames"])},
+  // components: {
+  //   SearchBar,
+  //   NavBar,
+  //   BigDiv,
+  // },
+  // computed: mapGetters(["allGames"]),
 
-  created() {
-    this.fetchGames();
-  }
+  // created() {
+    // this.fetchGames();
+  // }
 };
 </script>
 

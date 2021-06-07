@@ -2,15 +2,15 @@
     <div class="wrapper">
         <h3>Directorio de juegos</h3>
         <div class="bar-wrapper">
-            <select @change="genreFilter($event)" class="fixed-size">
+            <select @change="updateGenre($event)" class="fixed-size">
                 <option disabled selected>Filtra juegos por genero</option>
                 <option value="NotSelected">Mostrar todos</option>
-                <option :value="genre" :key="genre" v-for="genre in genres">{{genre}}</option>
+                <option :value="genre" :key="genre" v-for="genre in allGenres">{{genre}}</option>
             </select>
-            <select @change="platformFilter($event)" class="fixed-size">
+            <select @change="updatePlatform($event)" class="fixed-size">
                 <option disabled selected>Filtra juegos por plataforma</option>
                 <option value="NotSelected">Mostrar todos</option>
-                <option :value="platform" :key="platform" v-for="platform in platforms">{{platform}}</option>
+                <option :value="platform" :key="platform" v-for="platform in allPlatform">{{platform}}</option>
             </select>
         </div>
     </div>
@@ -18,11 +18,15 @@
 
 <script>
 
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: 'SearchBar',
-    methods: {...mapActions(["updateGenre", "updatePlatform"])}
+    methods: {
+        ...mapActions(["fetchGames","updateGenre", "updatePlatform"]),
+
+    },
+    computed: mapGetters(["allGenres", "allPlatform"]),
 }
 </script>
 
