@@ -95,6 +95,12 @@ export default createStore({
             genreAux.add(game.genre)
           });
           state.genre = [...genreAux]
+        } else {
+          let platformAux = new Set();
+          state.games.map((game) => {
+            platformAux.add(game.platform)
+          });
+          state.platforms = [...platformAux]
         }
       } else {
         state.selectedGenre = genre;
@@ -123,6 +129,12 @@ export default createStore({
             platformAux.add(game.platform)
           });
           state.platforms = [...platformAux]
+        } else {
+          let genreAux = new Set();
+          state.games.map((game) => {
+            genreAux.add(game.genre)
+          });
+          state.genre = [...genreAux]
         }
       } else {
         state.selectedPlatform = platform
