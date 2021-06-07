@@ -3,7 +3,11 @@
     <nav class="scene_nav">
         <ol class="scene_nav_list">
         <li class="scene_nav_item" v-for="(game_id, index) in favoritesArray">
-            <button class="scene_nav_button" @click="toggleReminder(game_id)" :class="{ 'o-active': selectedGame === game_id }"></button>
+            <button
+              class="scene_nav_button"
+              @click="toggleReminder(game_id)"
+              :class="{ 'o-active': selectedGame === game_id }">
+            </button>
         </li>
         </ol>
     </nav>

@@ -23,7 +23,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     name: 'SearchBar',
     methods: {
-        ...mapActions(["fetchGames","filterGamesGenre", "filterGamesPlatform"]),
+        ...mapActions(["filterGamesGenre", "filterGamesPlatform"]),
 
     },
     computed: mapGetters(["allGenres", "allPlatform"]),

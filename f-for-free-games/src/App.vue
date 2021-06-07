@@ -22,7 +22,6 @@ export default {
     NavBar,
     BigDiv,
   },
-  computed: mapGetters(["allGames"]),
 
   created() {
     this.fetchGames();
