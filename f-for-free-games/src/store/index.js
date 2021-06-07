@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import todo from "./modules/todos.js";
 
 
 export default createStore({
