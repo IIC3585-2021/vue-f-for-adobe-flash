@@ -11,11 +11,11 @@
         <button class="button" @click="$emit('add-favorite', game.id)">
             {{favorite_games.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}  <i class="fas fa-star"></i>
         </button>
-        <p>Name: {{ game.title }}</p>
-        <p>Description: {{ game.short_description }}</p>
+        <p>Nombre: {{ game.title }}</p>
+        <p>Descripción: {{ game.short_description }}</p>
 
-        <p>Genre: {{ game.genre }}</p>
-        <p>Platform: {{ game.platform }}</p>
+        <p>Genero: {{ game.genre }}</p>
+        <p>Plataforma: {{ game.platform }}</p>
         <a class="link" v-bind:href="game.game_url">Pruebalo aquí</a>
     </div>
 </template>
@@ -47,12 +47,7 @@ export default {
 
     overflow: hidden;
     margin: 0;
-    margin-right: 1em;
     float: left;
-}
-
-.text {
-    position: relative;
 }
 
 .link {
@@ -84,6 +79,15 @@ export default {
     .button{
         transition:none
     }
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 </style>

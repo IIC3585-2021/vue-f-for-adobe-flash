@@ -56,7 +56,7 @@ export default {
 
 .game {
     width: 360px;
-    height: 250px;
+    height: 270px;
 
     margin-top: 5%;
     box-sizing: border-box;
@@ -76,6 +76,11 @@ export default {
     overflow-y: hidden;
     align-items: left;
     text-align: left;
+
+    padding-top: 0;
+
+    display: grid;
+    grid-template-columns: 385px auto;
 }
 
 </style>
