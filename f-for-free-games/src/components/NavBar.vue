@@ -2,8 +2,8 @@
     <div class="ui" id="js-ui">
     <nav class="scene_nav">
         <ol class="scene_nav_list">
-        <li class="scene_nav_item" v-for="(game_id, index) in favorite_games">
-            <button class="scene_nav_button" @click="$emit('toggle-reminder', game_id)" :class="{ 'o-active': selected_game === game_id }"></button>
+        <li class="scene_nav_item" v-for="(game_id, index) in favoritesArray">
+            <button class="scene_nav_button" @click="toggleReminder(game_id)" :class="{ 'o-active': selectedGame === game_id }"></button>
         </li>
         </ol>
     </nav>
@@ -11,11 +11,14 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
+
 export default {
     name: 'NavBar',
-    props: {
-        selected_game: Number,
-        favorite_games: Array,
+    computed: mapGetters(["favoritesArray", "selectedGame"]),
+    methods: {
+        ...mapMutations(["toggleReminder"]),
+
     },
 }
 </script>

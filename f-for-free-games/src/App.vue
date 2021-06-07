@@ -1,8 +1,8 @@
 <template>
-  <!-- <NavBar/> -->
+  <NavBar/>
   <h1>Encuentra tu juego ideal!</h1>
   <SearchBar/>
-  <!-- <BigDiv/> -->
+  <BigDiv/>
 </template>
 
 <script>

@@ -1,14 +1,11 @@
 <template>
     <div class="bigdiv">
         <div
-            :class="[selected_game == game.id ? 'gamebig' : 'game']"
-            :key="game.id" v-for="game in games"
+            :class="[selectedGame == game.id ? 'gamebig' : 'game']"
+            :key="game.id" v-for="game in allGames"
         >
             <GameDiv
-                @toggle-reminder="$emit('toggle-reminder', game.id)"
-                @add-favorite="$emit('add-favorite', game.id)"
-                :game="game" :selected_game="selected_game"
-                :favorite_games="favorite_games"
+                :game="game"
             />
         </div>
     </div>
@@ -19,20 +16,18 @@
 
 import GameDiv from "./GameDiv.vue";
 
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
     name: 'BigDiv',
+    computed: mapGetters(["allGames", "selectedGame"]),
+    methods: {
+        ...mapMutations(["toggleReminder"]),
+
+    },
     components: {
         GameDiv
     },
-    props: {
-        games: Array,
-        selected_game: Number,
-        favorite_games: Array,
-    },
-    emits: [
-        'toggle-reminder',
-        'add-favorite'
-    ],
 }
 </script>
 

@@ -1,12 +1,12 @@
 <template>
     <img
-        @click="$emit('toggle-reminder', game.id)"
-        :class="[selected_game == game.id ? 'big-img-game' : 'img-game']"
+        @click="toggleReminder(game.id)"
+        :class="[selectedGame == game.id ? 'big-img-game' : 'img-game']"
         v-bind:src="game.thumbnail"
     >
     <span>{{ game.title}}</span>
     <div>
-        <button @click="$emit('add-favorite', game.id)">{{favorite_games.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}</button>
+        <button @click="addFavorite(game.id)">{{favoritesArray.includes(game.id) ? "Remove from Favorites" : "Add to Favorites"}}</button>
         <h6>Name: {{ game.title }}</h6>
         <h6>Description: {{ game.short_description }}</h6>
 
@@ -17,12 +17,18 @@
 </template>
 
 <script>
+
+import { mapMutations, mapGetters } from "vuex";
+
 export default {
     name: 'GameDiv',
+    computed: mapGetters(["favoritesArray", "selectedGame"]),
+    methods: {
+        ...mapMutations(["toggleReminder", "addFavorite"]),
+
+    },
     props: {
         game: Object,
-        selected_game: Number,
-        favorite_games: Array,
     }
 }
 </script>
